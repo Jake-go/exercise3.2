@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>View Guests</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" th:href="@{/addGuest}">Add Guest</a>
+                <a class="nav-link" th:href="@{/viewGuests}">View Guests</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Display guests and their associated pets -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>View Guests</h1>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Pet Name</th>
+                            <th scope="col">Pet Species</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="guest : ${guests}">
+                            <td th:text="${guest.name}"></td>
+                            <td th:text="${guest.age}"></td>
+                            <td th:text="${guest.pet != null ? guest.pet.name : 'N/A'}"></td>
+                            <td th:text="${guest.pet != null ? guest.pet.species : 'N/A'}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

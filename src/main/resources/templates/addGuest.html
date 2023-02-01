@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- import bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Add Guest</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Add Guest</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" th:href="@{/}">Home</a>
+                <a class="nav-link active" th:href="@{/addGuest}">Add Guest<span class="sr-only">(current)</span></a>
+                <a class="nav-link" th:href="@{/viewGuests}">View Guests</a>
+            </div>
+        </div>
+    </nav>
+    <form class="form-group" th:action="@{/processAddGuest}">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Add Guest</h1>
+                    <p>Enter guest information below:</p>
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                    <label for="age">Age:</label>
+                    <input type="number" class="form-control" id="age" name="age" required>
+                    <br>
+                    <!-- a check box to make the pet information not applicable -->
+                    <label for="petInfo">Check if you do not have a pet</label>
+                    <input type="checkbox" id="petInfo" name="petInfo" value="petInfo">
+                    <h3>Pet Information</h3>
+                    <div id="petInformation">
+                        <label for="petName">Pet Name:</label>
+                        <input type="text" class="form-control" id="petName" name="petName">
+                        <label for="petSpecies">Pet Species:</label>
+                        <input type="text" class="form-control" id="petSpecies" name="petSpecies">
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <br> <br>
+
+
+    <script>
+        const petInformation = document.getElementById("petInformation");
+        const petInfoCheckbox = document.getElementById("petInfo");
+        var petName = document.getElementById("petName");
+        var petSpecies = document.getElementById("petSpecies");
+
+        petInfoCheckbox.addEventListener("click", function () {
+            if (petInfoCheckbox.checked) {
+                petInformation.style.display = "none";
+                petName.value = "";
+                petSpecies.value = "";
+            } else {
+                petInformation.style.display = "block";
+            }
+        });
+    </script>
+
+    <style>
+        #petInformation {
+            display: block;
+        }
+    </style>
+
+</body>
+
+</html>
